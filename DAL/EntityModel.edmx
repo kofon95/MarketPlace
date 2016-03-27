@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgroCategories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AgroCommodities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="agro_category_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AgroProducts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="agro_commodity_id" Type="int" Nullable="false" />
+          <Property Name="size_percent" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="price" Type="real" Nullable="false" />
+          <Property Name="city_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="2048" />
+          <Property Name="seller_id" Type="int" Nullable="false" />
+          <Property Name="create_date" Type="date" Nullable="false" />
+          <Property Name="update_date" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AgroCommo__agro___1AD3FDA4">
+          <End Role="AgroCategories" Type="Self.AgroCategories" Multiplicity="1" />
+          <End Role="AgroCommodities" Type="Self.AgroCommodities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgroCategories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgroCommodities">
+              <PropertyRef Name="agro_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AgroProdu__agro___3A4CA8FD">
+          <End Role="AgroCommodities" Type="Self.AgroCommodities" Multiplicity="1" />
+          <End Role="AgroProducts" Type="Self.AgroProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgroCommodities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgroProducts">
+              <PropertyRef Name="agro_commodity_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AgroProdu__produ__37703C52">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="AgroProducts" Type="Self.AgroProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgroProducts">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__city_i__367C1819">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetAgroProductById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="id" Type="int" Nullable="false" />
+                <Property Name="product_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+                <Property Name="price" Type="real" Nullable="false" />
+                <Property Name="description" Type="nvarchar" MaxLength="2048" />
+                <Property Name="seller_id" Type="int" Nullable="false" />
+                <Property Name="create_date" Type="date" Nullable="false" />
+                <Property Name="update_date" Type="date" Nullable="false" />
+                <Property Name="size" Type="nvarchar" MaxLength="9" Nullable="false" />
+                <Property Name="city_id" Type="int" Nullable="false" />
+                <Property Name="city_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="commodity_id" Type="int" Nullable="false" />
+                <Property Name="commodity_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="category_id" Type="int" Nullable="false" />
+                <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetAgroProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="text" Type="nvarchar(max)" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="id" Type="int" Nullable="false" />
+                <Property Name="product_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+                <Property Name="price" Type="real" Nullable="false" />
+                <Property Name="description" Type="nvarchar" MaxLength="2048" />
+                <Property Name="seller_id" Type="int" Nullable="false" />
+                <Property Name="create_date" Type="date" Nullable="false" />
+                <Property Name="size" Type="nvarchar" MaxLength="9" Nullable="false" />
+                <Property Name="city_id" Type="int" Nullable="false" />
+                <Property Name="city_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="commodity_id" Type="int" Nullable="false" />
+                <Property Name="commodity_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="category_id" Type="int" Nullable="false" />
+                <Property Name="category_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="StoreModelStoreContainer">
+          <EntitySet Name="AgroCategories" EntityType="Self.AgroCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgroCommodities" EntityType="Self.AgroCommodities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgroProducts" EntityType="Self.AgroProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AgroCommo__agro___1AD3FDA4" Association="Self.FK__AgroCommo__agro___1AD3FDA4">
+            <End Role="AgroCategories" EntitySet="AgroCategories" />
+            <End Role="AgroCommodities" EntitySet="AgroCommodities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AgroProdu__agro___3A4CA8FD" Association="Self.FK__AgroProdu__agro___3A4CA8FD">
+            <End Role="AgroCommodities" EntitySet="AgroCommodities" />
+            <End Role="AgroProducts" EntitySet="AgroProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AgroProdu__produ__37703C52" Association="Self.FK__AgroProdu__produ__37703C52">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="AgroProducts" EntitySet="AgroProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__city_i__367C1819" Association="Self.FK__Products__city_i__367C1819">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetAgroProductById_Result">
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="product_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Single" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="seller_id" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" />
+          <Property Name="size" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city_id" Type="Int32" Nullable="false" />
+          <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="commodity_id" Type="Int32" Nullable="false" />
+          <Property Name="commodity_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAgroProducts_Result">
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="product_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Single" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="seller_id" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="10" />
+          <Property Name="size" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city_id" Type="Int32" Nullable="false" />
+          <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="commodity_id" Type="Int32" Nullable="false" />
+          <Property Name="commodity_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Type="String" Name="category_name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="AgroCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AgroCommodities" Relationship="Self.FK__AgroCommo__agro___1AD3FDA4" FromRole="AgroCategories" ToRole="AgroCommodities" />
+        </EntityType>
+        <EntityType Name="AgroCommodity">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="agro_category_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AgroCategory" Relationship="Self.FK__AgroCommo__agro___1AD3FDA4" FromRole="AgroCommodities" ToRole="AgroCategories" />
+          <NavigationProperty Name="AgroProducts" Relationship="Self.FK__AgroProdu__agro___3A4CA8FD" FromRole="AgroCommodities" ToRole="AgroProducts" />
+        </EntityType>
+        <EntityType Name="AgroProduct">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="agro_commodity_id" Type="Int32" Nullable="false" />
+          <Property Name="size_percent" Type="Single" Nullable="false" />
+          <NavigationProperty Name="AgroCommodity" Relationship="Self.FK__AgroProdu__agro___3A4CA8FD" FromRole="AgroProducts" ToRole="AgroCommodities" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__AgroProdu__produ__37703C52" FromRole="AgroProducts" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__city_i__367C1819" FromRole="Cities" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Single" Nullable="false" />
+          <Property Name="city_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="seller_id" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AgroProducts" Relationship="Self.FK__AgroProdu__produ__37703C52" FromRole="Products" ToRole="AgroProducts" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Products__city_i__367C1819" FromRole="Products" ToRole="Cities" />
+        </EntityType>
+        <Association Name="FK__AgroCommo__agro___1AD3FDA4">
+          <End Role="AgroCategories" Type="Self.AgroCategory" Multiplicity="1" />
+          <End Role="AgroCommodities" Type="Self.AgroCommodity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgroCategories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgroCommodities">
+              <PropertyRef Name="agro_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AgroProdu__agro___3A4CA8FD">
+          <End Role="AgroCommodities" Type="Self.AgroCommodity" Multiplicity="1" />
+          <End Role="AgroProducts" Type="Self.AgroProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgroCommodities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgroProducts">
+              <PropertyRef Name="agro_commodity_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AgroProdu__produ__37703C52">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="AgroProducts" Type="Self.AgroProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgroProducts">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__city_i__367C1819">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgroCategories" EntityType="Self.AgroCategory" />
+          <EntitySet Name="AgroCommodities" EntityType="Self.AgroCommodity" />
+          <EntitySet Name="AgroProducts" EntityType="Self.AgroProduct" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <AssociationSet Name="FK__AgroCommo__agro___1AD3FDA4" Association="Self.FK__AgroCommo__agro___1AD3FDA4">
+            <End Role="AgroCategories" EntitySet="AgroCategories" />
+            <End Role="AgroCommodities" EntitySet="AgroCommodities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AgroProdu__agro___3A4CA8FD" Association="Self.FK__AgroProdu__agro___3A4CA8FD">
+            <End Role="AgroCommodities" EntitySet="AgroCommodities" />
+            <End Role="AgroProducts" EntitySet="AgroProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AgroProdu__produ__37703C52" Association="Self.FK__AgroProdu__produ__37703C52">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="AgroProducts" EntitySet="AgroProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__city_i__367C1819" Association="Self.FK__Products__city_i__367C1819">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <FunctionImport Name="GetAgroProductById" IsComposable="true" ReturnType="Collection(StoreModel.GetAgroProductById_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAgroProducts" IsComposable="true" ReturnType="Collection(StoreModel.GetAgroProducts_Result)">
+            <Parameter Name="text" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreModelStoreContainer" CdmEntityContainer="StoreContext">
+          <EntitySetMapping Name="AgroCategories">
+            <EntityTypeMapping TypeName="StoreModel.AgroCategory">
+              <MappingFragment StoreEntitySet="AgroCategories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgroCommodities">
+            <EntityTypeMapping TypeName="StoreModel.AgroCommodity">
+              <MappingFragment StoreEntitySet="AgroCommodities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="agro_category_id" ColumnName="agro_category_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgroProducts">
+            <EntityTypeMapping TypeName="StoreModel.AgroProduct">
+              <MappingFragment StoreEntitySet="AgroProducts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="agro_commodity_id" ColumnName="agro_commodity_id" />
+                <ScalarProperty Name="size_percent" ColumnName="size_percent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="StoreModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="StoreModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="StoreModel.Store.GetAgroProductById" FunctionImportName="GetAgroProductById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StoreModel.GetAgroProductById_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="commodity_id" ColumnName="commodity_id" />
+                <ScalarProperty Name="commodity_name" ColumnName="commodity_name" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAgroProducts" FunctionName="StoreModel.Store.GetAgroProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StoreModel.GetAgroProducts_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="commodity_id" ColumnName="commodity_id" />
+                <ScalarProperty Name="commodity_name" ColumnName="commodity_name" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,19 @@
+[Bb]in
+[Oo]bj
+
+# .vs
+.*/
+
+# configuration files
+*/[Ww]eb.config
+*/[Aa]pp.config
+
+
+*.mdf
+*.log
+App_Data
+
+TestResult.xml
+
+*.tmp
+*.tmp_proj
