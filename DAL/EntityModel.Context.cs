@@ -32,6 +32,9 @@ namespace DAL
         public virtual DbSet<AgroProduct> AgroProducts { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
+        public virtual DbSet<Guest> Guests { get; set; }
+        public virtual DbSet<ProductView> ProductViews { get; set; }
     
         [DbFunction("StoreContext", "GetAgroProductById")]
         public virtual IQueryable<GetAgroProductById_Result> GetAgroProductById(Nullable<int> id)

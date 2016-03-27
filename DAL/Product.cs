@@ -18,6 +18,8 @@ namespace DAL
         public Product()
         {
             this.AgroProducts = new HashSet<AgroProduct>();
+            this.ProductImages = new HashSet<ProductImage>();
+            this.ProductViews = new HashSet<ProductView>();
         }
     
         public int id { get; set; }
@@ -32,5 +34,9 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AgroProduct> AgroProducts { get; set; }
         public virtual City City { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductView> ProductViews { get; set; }
     }
 }

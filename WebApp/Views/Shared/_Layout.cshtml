@@ -1,40 +1,126 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+
+	<link href="~/Content/Template_shoes/templatemo_style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="~/Content/Template_shoes/css/ddsmoothmenu.css"/>
+	@RenderSection("Stylesheets", false)
+
+	<script src="~/scripts/jquery-2.2.1.js"></script>
+	@*<script src="~/scripts/Template_shoes/jquery.min.js"></script>*@
+	<script type="text/javascript" src="~/scripts/Template_shoes/ddsmoothmenu.js"></script>
+	<script type="text/javascript">
+
+		ddsmoothmenu.init({
+			mainmenuid: "top_nav", //menu DIV id
+			orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+			classname: 'ddsmoothmenu', //class added to menu's outer DIV
+			//customtheme: ["#1c5a80", "#18374a"],
+			contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+		})
+
+	</script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+	<div id="templatemo_body_wrapper">
+		<div id="templatemo_wrapper">
+
+			<div id="templatemo_header">
+				<div id="site_title"><h1><a href="/">Лучший Маркет из дому</a></h1></div>
+				<div id="header_right">
+					<p>
+						<a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="#">Log In</a>
+					</p>
+					<p>
+						Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
+					</p>
+				</div>
+				<div class="cleaner"></div>
+			</div> <!-- END of templatemo_header -->
+
+			<div id="templatemo_menubar">
+				<div id="top_nav" class="ddsmoothmenu">
+					<ul>
+						<li><a href="/" class="selected">Главная</a></li>
+						<li>
+							<a href="#">Products</a>
+							<ul>
+								<li><a href="#">Пункт 1</a></li>
+								<li><a href="#">Пункт 2</a></li>
+							</ul>
+						</li>
+						<li>@Html.ActionLink("Сельская продукция", "Agro", "Search")</li>
+						<li>@Html.ActionLink("Одежда и обувь", "Clothes", "Search")</li>
+						<li>@Html.ActionLink("О нас", "About", "Home")</li>
+					</ul>
+					<br style="clear: left" />
+				</div> <!-- end of ddsmoothmenu -->
+			</div> <!-- END of templatemo_menubar -->
+
+			<div id="templatemo_main">
+				<div id="sidebar" class="float_l">
+					<div class="sidebar_box">
+						<span class="bottom"></span>
+						<h3>Категории</h3>
+						<div class="content">
+							<ul class="sidebar_list">
+								<li><a href="#">Категория 1</a></li>
+								<li><a href="#">Категория 2</a></li>
+								<li><a href="#">Категория 3</a></li>
+								<li><a href="#">И т. д...</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="sidebar_box">
+						<span class="bottom"></span>
+						<h3>Популярные товары</h3>
+						<div class="content">
+							<div class="bs_box">
+								<a href="#"><img src="~/Content/Template_shoes/images/templatemo_image_01.jpg" alt="image" /></a>
+								<h4><a href="#">Donec nunc nisl</a></h4>
+								<p class="price">$10</p>
+								<div class="cleaner"></div>
+							</div>
+							<div class="bs_box">
+								<a href="#"><img src="~/Content/Template_shoes/images/templatemo_image_01.jpg" alt="image" /></a>
+								<h4><a href="#">Lorem ipsum dolor sit</a></h4>
+								<p class="price">$12</p>
+								<div class="cleaner"></div>
+							</div>
+							<div class="bs_box">
+								<a href="#"><img src="~/Content/Template_shoes/images/templatemo_image_01.jpg" alt="image" /></a>
+								<h4><a href="#">Phasellus ut dui</a></h4>
+								<p class="price">$20</p>
+								<div class="cleaner"></div>
+							</div>
+							<div class="bs_box">
+								<a href="#"><img src="~/Content/Template_shoes/images/templatemo_image_01.jpg" alt="image" /></a>
+								<h4><a href="#">Vestibulum ante</a></h4>
+								<p class="price">$8</p>
+								<div class="cleaner"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="main-content">
+					@RenderBody()
+				</div>
+				<div class="cleaner"></div>
+			</div> <!-- END of templatemo_main -->
+
+			<div id="templatemo_footer">
+				<p>
+					<a href="/">Главная</a> | <a href="/About">О нас</a> | <a href="#">Contact Us</a>
+				</p>
+				<p>&copy; @DateTime.Now.Year - Дагмаркет</p>
+			</div> <!-- END of templatemo_footer -->
+
+		</div> <!-- END of templatemo_wrapper -->
+	</div> <!-- END of templatemo_body_wrapper -->
 </body>
 </html>

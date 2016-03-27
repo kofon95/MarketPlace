@@ -36,6 +36,25 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Guests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ip_address" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="user_agent" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="languages" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="coming_date" Type="datetime" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductImages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image_path" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="id" />
@@ -48,6 +67,15 @@
           <Property Name="seller_id" Type="int" Nullable="false" />
           <Property Name="create_date" Type="date" Nullable="false" />
           <Property Name="update_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductViews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="guest_id" Type="int" Nullable="false" />
+          <Property Name="view_date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK__AgroCommo__agro___1AD3FDA4">
           <End Role="AgroCategories" Type="Self.AgroCategories" Multiplicity="1" />
@@ -85,6 +113,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProductIm__produ__625A9A57">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Products__city_i__367C1819">
           <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -94,6 +134,30 @@
             </Principal>
             <Dependent Role="Products">
               <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductVi__guest__7A3223E8">
+          <End Role="Guests" Type="Self.Guests" Multiplicity="1" />
+          <End Role="ProductViews" Type="Self.ProductViews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductViews">
+              <PropertyRef Name="guest_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductVi__produ__793DFFAF">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductViews" Type="Self.ProductViews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductViews">
+              <PropertyRef Name="product_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -115,7 +179,8 @@
                 <Property Name="commodity_id" Type="int" Nullable="false" />
                 <Property Name="commodity_name" Type="nvarchar" MaxLength="50" Nullable="false" />
                 <Property Name="category_id" Type="int" Nullable="false" />
-                <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="category_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="image_path" Type="nvarchar" MaxLength="256" Nullable="false" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -138,6 +203,7 @@
                 <Property Name="commodity_name" Type="nvarchar" MaxLength="50" Nullable="false" />
                 <Property Name="category_id" Type="int" Nullable="false" />
                 <Property Name="category_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="image" Type="nvarchar" MaxLength="256" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -147,7 +213,10 @@
           <EntitySet Name="AgroCommodities" EntityType="Self.AgroCommodities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AgroProducts" EntityType="Self.AgroProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guests" EntityType="Self.Guests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductViews" EntityType="Self.ProductViews" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__AgroCommo__agro___1AD3FDA4" Association="Self.FK__AgroCommo__agro___1AD3FDA4">
             <End Role="AgroCategories" EntitySet="AgroCategories" />
             <End Role="AgroCommodities" EntitySet="AgroCommodities" />
@@ -160,9 +229,21 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="AgroProducts" EntitySet="AgroProducts" />
           </AssociationSet>
+          <AssociationSet Name="FK__ProductIm__produ__625A9A57" Association="Self.FK__ProductIm__produ__625A9A57">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
           <AssociationSet Name="FK__Products__city_i__367C1819" Association="Self.FK__Products__city_i__367C1819">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductVi__guest__7A3223E8" Association="Self.FK__ProductVi__guest__7A3223E8">
+            <End Role="Guests" EntitySet="Guests" />
+            <End Role="ProductViews" EntitySet="ProductViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductVi__produ__793DFFAF" Association="Self.FK__ProductVi__produ__793DFFAF">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductViews" EntitySet="ProductViews" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -173,17 +254,18 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="product_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="price" Type="Single" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" Nullable="true" />
           <Property Name="seller_id" Type="Int32" Nullable="false" />
-          <Property Name="create_date" Type="DateTime" Nullable="false" />
-          <Property Name="update_date" Type="DateTime" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="10" />
+          <Property Name="update_date" Type="DateTime" Nullable="false" Precision="10" />
           <Property Name="size" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="city_id" Type="Int32" Nullable="false" />
           <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="commodity_id" Type="Int32" Nullable="false" />
           <Property Name="commodity_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="category_id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="category_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="image_path" Nullable="false" MaxLength="256" />
         </ComplexType>
         <ComplexType Name="GetAgroProducts_Result">
           <Property Name="id" Type="Int32" Nullable="false" />
@@ -199,6 +281,7 @@
           <Property Name="commodity_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="category_id" Type="Int32" Nullable="false" />
           <Property Type="String" Name="category_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="256" />
         </ComplexType>
         <EntityType Name="AgroCategory">
           <Key>
@@ -251,6 +334,8 @@
           <Property Name="update_date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="AgroProducts" Relationship="Self.FK__AgroProdu__produ__37703C52" FromRole="Products" ToRole="AgroProducts" />
           <NavigationProperty Name="City" Relationship="Self.FK__Products__city_i__367C1819" FromRole="Products" ToRole="Cities" />
+          <NavigationProperty Name="ProductImages" Relationship="StoreModel.FK__ProductIm__produ__625A9A57" FromRole="Product" ToRole="ProductImage" />
+          <NavigationProperty Name="ProductViews" Relationship="StoreModel.FK__ProductVi__produ__793DFFAF" FromRole="Product" ToRole="ProductView" />
         </EntityType>
         <Association Name="FK__AgroCommo__agro___1AD3FDA4">
           <End Role="AgroCategories" Type="Self.AgroCategory" Multiplicity="1" />
@@ -326,9 +411,92 @@
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAgroProducts" IsComposable="true" ReturnType="Collection(StoreModel.GetAgroProducts_Result)">
-            <Parameter Name="text" Mode="In" Type="String" />
+          <Parameter Name="text" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="ProductImages" EntityType="StoreModel.ProductImage" />
+          <AssociationSet Name="FK__ProductIm__produ__625A9A57" Association="StoreModel.FK__ProductIm__produ__625A9A57">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImage" EntitySet="ProductImages" />
+          </AssociationSet>
+          <EntitySet Name="Guests" EntityType="StoreModel.Guest" />
+          <EntitySet Name="ProductViews" EntityType="StoreModel.ProductView" />
+          <AssociationSet Name="FK__ProductVi__guest__7A3223E8" Association="StoreModel.FK__ProductVi__guest__7A3223E8">
+            <End Role="Guest" EntitySet="Guests" />
+            <End Role="ProductView" EntitySet="ProductViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductVi__produ__793DFFAF" Association="StoreModel.FK__ProductVi__produ__793DFFAF">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductView" EntitySet="ProductViews" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image_path" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="StoreModel.FK__ProductIm__produ__625A9A57" FromRole="ProductImage" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__ProductIm__produ__625A9A57">
+          <End Type="StoreModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="StoreModel.ProductImage" Role="ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ip_address" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="user_agent" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="languages" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="coming_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="ProductViews" Relationship="StoreModel.FK__ProductVi__guest__7A3223E8" FromRole="Guest" ToRole="ProductView" />
+        </EntityType>
+        <EntityType Name="ProductView">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="guest_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Guest" Relationship="StoreModel.FK__ProductVi__guest__7A3223E8" FromRole="ProductView" ToRole="Guest" />
+          <NavigationProperty Name="Product" Relationship="StoreModel.FK__ProductVi__produ__793DFFAF" FromRole="ProductView" ToRole="Product" />
+          <Property Name="view_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK__ProductVi__guest__7A3223E8">
+          <End Type="StoreModel.Guest" Role="Guest" Multiplicity="1" />
+          <End Type="StoreModel.ProductView" Role="ProductView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductView">
+              <PropertyRef Name="guest_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductVi__produ__793DFFAF">
+          <End Type="StoreModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="StoreModel.ProductView" Role="ProductView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductView">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -400,7 +568,8 @@
                 <ScalarProperty Name="commodity_id" ColumnName="commodity_id" />
                 <ScalarProperty Name="commodity_name" ColumnName="commodity_name" />
                 <ScalarProperty Name="category_id" ColumnName="category_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="image_path" ColumnName="image_path" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -420,9 +589,41 @@
                 <ScalarProperty Name="commodity_name" ColumnName="commodity_name" />
                 <ScalarProperty Name="category_id" ColumnName="category_id" />
                 <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="image" ColumnName="image" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="StoreModel.ProductImage">
+              <MappingFragment StoreEntitySet="ProductImages">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="image_path" ColumnName="image_path" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="StoreModel.Guest">
+              <MappingFragment StoreEntitySet="Guests">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="coming_date" ColumnName="coming_date" />
+                <ScalarProperty Name="languages" ColumnName="languages" />
+                <ScalarProperty Name="user_agent" ColumnName="user_agent" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductViews">
+            <EntityTypeMapping TypeName="StoreModel.ProductView">
+              <MappingFragment StoreEntitySet="ProductViews">
+                <ScalarProperty Name="view_date" ColumnName="view_date" />
+                <ScalarProperty Name="guest_id" ColumnName="guest_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,111 @@
+﻿@model GetAgroProductById_Result
+
+@{
+	ViewBag.Title = @Model.product_name;
+}
+
+<div id="content" class="float_r">
+	<h1>@Model.product_name</h1>
+	<div class="content_half float_l">
+		@{
+			string firstImage = Model.ToImagePathFirstImage("/Content/Template_shoes/images/no-image-300x300.png");
+		}
+		<a class="image-container" rel="lightbox[portfolio]" href="@firstImage">
+			<img id="main-product-image" class="image" src="@firstImage" alt="image"/>
+		</a>
+		<div class="other-product-images">
+			@if (Model.Images.Length > 0)
+			{
+				<span>
+					<img class="current" src="@(Model.Images[0].ToImagePath())" />
+				</span>
+
+				for (int i = 1; i < @Model.Images.Length; i++)
+				{
+					<span>
+						<img src="@Model.Images[i].ToImagePath()"/>
+					</span>
+				}
+			}
+		</div>
+	</div>
+	<div class="content_half float_r">
+		<table>
+			<tr>
+				<td width="160">Цена:</td>
+				<td>@Model.price руб.</td>
+			</tr>
+			<tr>
+				<td>Категория:</td>
+				<td>@Model.category_name</td>
+			</tr>
+			<tr>
+				<td>Тип товара:</td>
+				<td>@Model.commodity_name</td>
+			</tr>
+		</table>
+		<div class="cleaner h20"></div>
+	</div>
+	<div class="cleaner h30"></div>
+
+	<h4>Описание товара:</h4>
+	<p class="prodict-description">@Model.description</p>
+
+	<div class="cleaner h50"></div>
+
+	<hr/>
+
+	<h3>Похожие товары</h3>
+	<div class="product_box">
+		<a href="#"><img class="image" src="/Content/Template_shoes/images/no-image-300x300.png" alt=""/></a>
+		<h3>Ut eu feugiat</h3>
+		<p class="product_price">$ 100</p>
+	</div>
+	<div class="product_box">
+		<a href="#"><img class="image" src="/Content/Template_shoes/images/no-image-300x300.png" alt=""/></a>
+		<h3>Curabitur et turpis</h3>
+		<p class="product_price">$ 200</p>
+	</div>
+	<div class="product_box no_margin_right">
+		<a href="#"><img class="image" src="/Content/Template_shoes/images/no-image-300x300.png" alt=""/></a>
+		<h3>Mauris consectetur</h3>
+		<p class="product_price">$ 120</p>
+	</div>
+</div>
+
+<script>
+	(function () {
+		var mainImage = document.getElementById("main-product-image");
+
+		var imgs = $(".other-product-images img");
+		imgs.click(function() {
+			imgs.removeClass("current");
+			this.classList.add("current");
+			mainImage.src = this.src;
+		});
+	})()
+</script>
+
+
+@section Stylesheets{
+	<style>
+		.image {
+			max-width: 250px;
+			max-height: 250px;
+		}
+		.image-container {
+			height: 250px;
+			display: block;
+		}
+		.prodict-description {
+			font-size: 11pt;
+		}
+		.other-product-images img {
+			height: 50px;
+		}
+		.other-product-images img.current {
+			box-shadow: 0 0 16px -6px black;
+			border-radius: 10px;
+		}
+	</style>
+}

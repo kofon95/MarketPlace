@@ -5,15 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fb38dc191b714204b3f87a83ee5adfbb" Name="Diagram1">
-        <EntityTypeShape EntityType="StoreModel.AgroCategory" Width="1.5" PointX="0.875" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StoreModel.AgroCommodity" Width="1.5" PointX="3.125" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StoreModel.AgroProduct" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="StoreModel.City" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StoreModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.AgroCategory" Width="1.5" PointX="0.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.AgroCommodity" Width="1.5" PointX="3.125" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.AgroProduct" Width="1.5" PointX="5.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.City" Width="1.5" PointX="0.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreModel.Product" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="StoreModel.FK__AgroCommo__agro___1AD3FDA4" ManuallyRouted="false" />
         <AssociationConnector Association="StoreModel.FK__AgroProdu__agro___3A4CA8FD" ManuallyRouted="false" />
         <AssociationConnector Association="StoreModel.FK__AgroProdu__produ__37703C52" ManuallyRouted="false" />
         <AssociationConnector Association="StoreModel.FK__Products__city_i__367C1819" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StoreModel.ProductImage" Width="1.5" PointX="0.875" PointY="0.75" />
+        <AssociationConnector Association="StoreModel.FK__ProductIm__produ__625A9A57" />
+        <EntityTypeShape EntityType="StoreModel.Guest" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StoreModel.ProductView" Width="1.5" PointX="5.875" PointY="0.75" />
+        <AssociationConnector Association="StoreModel.FK__ProductVi__guest__7A3223E8" />
+        <AssociationConnector Association="StoreModel.FK__ProductVi__produ__793DFFAF" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,37 +1,130 @@
-﻿@model IQueryable<DAL.GetAgroProducts_Result>
+﻿@model IQueryable<GetAgroProducts_Result>
 
 @{
 	ViewBag.Title = "Products";
 }
 
-<h2>Product</h2>
+<div id="templatemo_search" class="form-product-container">
+	<form class="form-product" action="" method="get">
+		<input id="text" type="text" value="@Request.Params["text"]" name="text" title="Поиск" class="txt_field"/>
+		<input type="submit" name="Search" value="" alt="Search" id="searchbutton" title="Search" class="sub_btn"/>
+		<div class="price-inputs">
+			<div>Цена: от..до</div>
+			<input id="min_price" type="number" name="min_price" value="@Request.Params["min_price"]"/>
+			<input id="max_price" type="number" name="max_price" value="@Request.Params["max_price"]"/>
+		</div>
+		<div>
+			Категория
+			<select id="category-id" name="category_id">
+				<option value="">Любая</option>
+				<option value="1">Фрукты</option>
+				<option value="2">Овощи</option>
+				<option value="3">Ягоды</option>
+			</select>
+		</div>
+		<div>
+			Товар
+			<select id="commodity-id" name="commodity_id">
+				<option value="">Любой</option>
+			</select>
+		</div>
+	</form>
+</div>
 
-<table border="1">
-	<thead>
-		<tr>
-			<th>
-				Name
-			</th>
-			<th>
-				Price
-			</th>
-			<th>
-				Product
-			</th>
-			<th>
-				Category
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var products in @Model)
-		{
-			<tr>
-				<td>@products.product_name</td>
-				<td>@products.price</td>
-				<td>@products.commodity_name</td>
-				<td>@products.category_name</td>
-			</tr>
+<script>
+	(function() {
+		var commoditySelect = document.getElementById("commodity-id");
+		$("#category-id").change(function() {
+			var id = this.value;
+			if (id.length === 0) {
+				clearCommoditySelect();
+				return;
+			}
+
+			var category = this;
+			$.get("/api/Default/GetCategories?$select=AgroCommodities/id,AgroCommodities/name&$expand=AgroCommodities&$filter=id+eq+" + id, function (e) {
+				var commodities = e[0].AgroCommodities;
+
+				var options = "";
+				for (var i = 0; i < commodities.length; i++) {
+					var com = commodities[i];
+					options += '<option value="' + com.id + '">' + com.name + '</option>';
+				}
+
+				clearCommoditySelect();
+				commoditySelect.innerHTML += options;
+
+				if (id === category.dataset.selectedValue) {
+					commoditySelect.value = commoditySelect.dataset.selectedValue;
+				}
+			});
+		});
+
+		function clearCommoditySelect() {
+			$(commoditySelect).children().not(":first").remove();
 		}
-	</tbody>
-</table>
+	})();
+
+	(function() {
+		var categorySelect = document.getElementById("category-id");
+		var value = "@Request.Params["category_id"]";
+		categorySelect.value = value;
+		categorySelect.dataset.selectedValue = categorySelect.value;
+		$(categorySelect).trigger("change");
+
+		var commoditySelect = document.getElementById("commodity-id");
+		commoditySelect.dataset.selectedValue = "@Request.Params["commodity_id"]";
+	})();
+</script>
+
+
+<div id="content" class="float_r">
+	<h1>Сельская продукция</h1>
+	@foreach (var product in @Model)
+	{
+		var url = product.ToUrl();
+		<div class="product_box">
+			<h3>@product.product_name</h3>
+			<a href="@url"><img class="image" src="@product.image.ToImagePath("/Content/Template_shoes/images/no-image-300x300.png")" alt="Shoes 1" /></a>
+			<p>
+				@{
+					string desc = product.description ?? "---";
+					if (desc.Length > 50)
+					{
+						desc = desc.Substring(0, 50) + "...";
+					}
+					@desc
+				}
+			</p>
+			<p class="product_price">@product.price руб</p>
+			<p>Товар: @product.commodity_name</p>
+			<p>Категория: @product.category_name</p>
+			<a href="@url" class="product-detail">Подробнее</a>
+		</div>
+					}
+</div>
+
+
+@section Stylesheets{
+	<style>
+		.form-product {
+			height: 120px;
+			float: left;
+		}
+
+		.price-inputs {
+			width: 150px;
+			font-size: 10pt;
+		}
+
+			.price-inputs > input {
+				width: 60px;
+				font-size: 11pt;
+			}
+
+		.form-product-container {
+			text-align: center;
+			margin: 0 auto;
+		}
+	</style>
+}

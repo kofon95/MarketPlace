@@ -4,9 +4,35 @@
 
 <h2>Главная страница</h2>
 
-<div>
-	<a href="/search/agro">Сельское производство</a>
+
+<div class="product-links">
+	<a href="/agro">Сельская продукция</a>
+	<a href="/clothes">Одежда</a>
+	<a href="/shoes">Обувь</a>
+	<a href="/electronics">Электроника</a>
+	<a href="/medicine">Лекарства</a>
+	<a href="/recreation">Отдых</a>
+	<a href="/underware">Белье</a>
 </div>
-<div>
-	<a href="/search/closes">Одежда и обувь</a>
-</div>
+
+@section Stylesheets{
+	<style>
+		.product-links {
+			margin: 0;
+		}
+		.product-links > * {
+			padding: 10px;
+			display: block;
+			background: #FCFCFC;
+			font-size: 13pt;
+			padding-left: 5%;
+			transition: padding-left 0.5s;
+		}
+		.product-links > *:hover {
+			text-decoration: none;
+			background: #0299aa;
+			color: white;
+			padding-left: 7%;
+		}
+	</style>
+}

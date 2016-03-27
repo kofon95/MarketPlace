@@ -19,6 +19,12 @@ namespace DAL
         private IRepository<Product, int> _product;
         public IRepository<Product, int> Product => _product ?? (_product = new SqlRepository<Product>(_context.Products, _context));
 
+        private IRepository<Guest, int> _guest;
+        public IRepository<Guest, int> Guest => _guest ?? (_guest = new SqlRepository<Guest>(_context.Guests, _context));
+
+        private IRepository<ProductView, int> _productViews;
+        public IRepository<ProductView, int> ProductView => _productViews ?? (_productViews = new SqlRepository<ProductView>(_context.ProductViews, _context));
+
         #endregion
     }
 }

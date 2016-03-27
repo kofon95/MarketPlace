@@ -26,5 +26,6 @@ namespace DAL
         public string commodity_name { get; set; }
         public int category_id { get; set; }
         public string category_name { get; set; }
+        public string image { get; set; }
     }
 }

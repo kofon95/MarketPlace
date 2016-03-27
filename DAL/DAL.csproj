@@ -75,12 +75,22 @@
     <Compile Include="AgroProduct.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AgroProduct_Result.cs" />
     <Compile Include="City.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FunctionsManager.cs" />
     <Compile Include="Functions\IFunctions.cs" />
     <Compile Include="Functions\SqlFunctions.cs" />
+    <Compile Include="Guest.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductImage.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductView.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryManager.cs" />
     <Compile Include="EntityModel.Context.cs">
       <AutoGen>True</AutoGen>
