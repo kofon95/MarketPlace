@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAfX8760sEc0WZ+NH5H2hZaQAAAAACAAAAAAAQZgAAAAEAACAAAACFzLhTnkOis3P/yQDtn3xRiIFCwPWRglViMSibniCHpAAAAAAOgAAAAAIAACAAAADgmswamo0a+rYDvqQ4mLxQwcOpyG8h/LlPLDnOby6O6CAAAAAKH2+w3Lu7fm20mIvE/tJtgdgGZb3cq9KtanfSYGhUVkAAAAC7FMInhYddAn7oeejKzDUJtIa/Wn8fX777IQxXq3UXj+CzHUH1DfrUmCj3DQvLHRU78PKksfj60G9GHr92Py4p</EncryptedPassword>
+    <_PublishTargetUrl>ftp://kofon96.somee.com/www.kofon96.somee.com</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>03/27/2016 23:19:46</publishTime>
+    </File>
+    <File Include="App_Data/Store.mdf">
+      <publishTime>03/28/2016 01:49:40</publishTime>
+    </File>
+    <File Include="App_Data/Store_log.ldf">
+      <publishTime>03/28/2016 01:49:40</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>03/27/2016 23:19:46</publishTime>
+    </File>
+    <File Include="bin/Bardock.Utils.dll">
+      <publishTime>03/27/2016 23:21:06</publishTime>
+    </File>
+    <File Include="bin/Bardock.Utils.Logger.dll">
+      <publishTime>03/27/2016 13:36:56</publishTime>
+    </File>
+    <File Include="bin/DAL.dll">
+      <publishTime>03/28/2016 01:59:14</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/de/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/26/2016 20:08:32</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/es/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/fr/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/it/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/ja/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/ko/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>03/27/2016 23:17:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>03/27/2016 23:17:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>03/27/2016 23:17:33</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>03/27/2016 23:17:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>03/27/2016 23:17:39</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>03/27/2016 23:17:37</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>03/27/2016 23:17:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.Edm.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.OData.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>03/26/2016 18:28:02</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/27/2016 23:18:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>03/26/2016 18:28:02</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>03/26/2016 18:28:02</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>03/26/2016 18:28:02</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>03/26/2016 18:28:03</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/ru/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>03/27/2016 23:14:11</publishTime>
+    </File>
+    <File Include="bin/System.Spatial.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>03/26/2016 18:28:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>03/27/2016 23:14:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.OData.dll">
+      <publishTime>03/27/2016 23:32:13</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>03/27/2016 23:14:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>03/26/2016 18:28:02</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>03/26/2016 18:28:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>03/26/2016 18:28:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>03/26/2016 18:28:02</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>03/26/2016 18:28:02</publishTime>
+    </File>
+    <File Include="bin/WebAPI.dll">
+      <publishTime>03/28/2016 01:59:18</publishTime>
+    </File>
+    <File Include="bin/WebApp.dll">
+      <publishTime>03/28/2016 01:59:22</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.Edm.resources.dll">
+      <publishTime>03/27/2016 23:32:04</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.OData.resources.dll">
+      <publishTime>03/27/2016 23:32:10</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/System.Spatial.resources.dll">
+      <publishTime>03/27/2016 23:32:07</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>03/26/2016 21:46:55</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/css/ddsmoothmenu.css">
+      <publishTime>03/27/2016 11:38:59</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/css/slimbox2.css">
+      <publishTime>03/27/2016 11:38:59</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/2co.gif">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/arrows.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/bullets.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/closelabel.gif">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/loading.gif">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/nextlabel.gif">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/no-image-300x300.png">
+      <publishTime>03/27/2016 18:36:03</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/paypal.gif">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/prevlabel.gif">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/01.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/02.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/03.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/04.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/05.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/06.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/07.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/08.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/09.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/10.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/product/10_l.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/remove_x.gif">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_addtocart.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_body.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_body_top.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_detail.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_footer.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_header_bg.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_image_01.jpg">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_list.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_logo.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_main_bg.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_menubar.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_menubar_without_search.png">
+      <publishTime>03/27/2016 14:54:04</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_search_bg.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/images/templatemo_sidebar_header.png">
+      <publishTime>03/27/2016 11:37:19</publishTime>
+    </File>
+    <File Include="Content/Template_shoes/templatemo_style.css">
+      <publishTime>03/27/2016 22:47:19</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/26/2016 18:29:39</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/27/2016 23:57:42</publishTime>
+    </File>
+    <File Include="resource/images/product/cucumber.jpg">
+      <publishTime>03/27/2016 17:53:53</publishTime>
+    </File>
+    <File Include="resource/images/product/pomidor-yagoda-ili-ovosch-7-400x300.jpg">
+      <publishTime>03/27/2016 17:52:58</publishTime>
+    </File>
+    <File Include="resource/images/product/tomato-47.png">
+      <publishTime>03/27/2016 17:48:26</publishTime>
+    </File>
+    <File Include="scripts/ai.0.15.0-build58334.js">
+      <publishTime>03/26/2016 18:29:44</publishTime>
+    </File>
+    <File Include="scripts/ai.0.15.0-build58334.min.js">
+      <publishTime>03/26/2016 18:29:44</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.min.js">
+      <publishTime>03/27/2016 16:04:12</publishTime>
+    </File>
+    <File Include="scripts/jquery-2.2.1.js">
+      <publishTime>03/27/2016 16:04:12</publishTime>
+    </File>
+    <File Include="scripts/jquery-2.2.1.min.js">
+      <publishTime>03/27/2016 16:04:12</publishTime>
+    </File>
+    <File Include="scripts/jquery-2.2.1.min.map">
+      <publishTime>03/27/2016 12:40:56</publishTime>
+    </File>
+    <File Include="scripts/modernizr-2.8.3.js">
+      <publishTime>03/27/2016 10:53:19</publishTime>
+    </File>
+    <File Include="scripts/Template_shoes/ddsmoothmenu.js">
+      <publishTime>03/27/2016 11:33:06</publishTime>
+    </File>
+    <File Include="scripts/Template_shoes/jquery.min.js">
+      <publishTime>03/27/2016 16:04:12</publishTime>
+    </File>
+    <File Include="scripts/Template_shoes/slimbox2.js">
+      <publishTime>03/27/2016 11:33:06</publishTime>
+    </File>
+    <File Include="Views/GetterById/GetAgro.cshtml">
+      <publishTime>03/28/2016 01:32:14</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>03/27/2016 15:47:09</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>03/28/2016 01:38:49</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>03/27/2016 15:59:47</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>03/26/2016 21:46:54</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/28/2016 01:59:34</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -230,6 +230,7 @@
     <Content Include="scripts\jquery-2.2.1.min.map" />
     <Content Include="Views\GetterById\GetAgro.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <None Include="Properties\PublishProfiles\kofon96.somee.com.pubxml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Search\Agro.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
