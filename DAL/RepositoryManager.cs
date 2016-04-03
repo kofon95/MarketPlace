@@ -25,6 +25,9 @@ namespace DAL
         private IRepository<ProductView, int> _productViews;
         public IRepository<ProductView, int> ProductView => _productViews ?? (_productViews = new SqlRepository<ProductView>(_context.ProductViews, _context));
 
+        private IRepository<User, int> _users;
+        public IRepository<User, int> User => _users ?? (_users = new SqlRepository<User>(_context.Users, _context));
+
         #endregion
     }
 }

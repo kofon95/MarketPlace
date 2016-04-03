@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb38dc191b714204b3f87a83ee5adfbb" Name="Diagram1">
+      <Diagram DiagramId="fb38dc191b714204b3f87a83ee5adfbb" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="StoreModel.AgroCategory" Width="1.5" PointX="0.875" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreModel.AgroCommodity" Width="1.5" PointX="3.125" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreModel.AgroProduct" Width="1.5" PointX="5.625" PointY="3.875" IsExpanded="true" />
@@ -20,6 +20,8 @@
         <EntityTypeShape EntityType="StoreModel.ProductView" Width="1.5" PointX="5.875" PointY="0.75" />
         <AssociationConnector Association="StoreModel.FK__ProductVi__guest__7A3223E8" />
         <AssociationConnector Association="StoreModel.FK__ProductVi__produ__793DFFAF" />
+        <EntityTypeShape EntityType="StoreModel.User" Width="1.5" PointX="7.75" PointY="3.875" />
+        <AssociationConnector Association="StoreModel.FK__Guests__user_id__2CBDA3B5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

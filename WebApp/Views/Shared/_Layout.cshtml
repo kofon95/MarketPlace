@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Net.Http
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -9,8 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="~/Content/Template_shoes/css/ddsmoothmenu.css"/>
 	@RenderSection("Stylesheets", false)
 
-	<script src="~/scripts/jquery-2.2.1.js"></script>
-	@*<script src="~/scripts/Template_shoes/jquery.min.js"></script>*@
+	<script src="~/scripts/jquery-2.2.1.min.js"></script>
+	<script src="~/scripts/url.manager.js"></script>
 	<script type="text/javascript" src="~/scripts/Template_shoes/ddsmoothmenu.js"></script>
 	<script type="text/javascript">
 
@@ -23,6 +24,7 @@
 		})
 
 	</script>
+	@RenderSection("Scripts", false)
 </head>
 <body>
 
@@ -57,7 +59,32 @@
 						<li>@Html.ActionLink("Сельская продукция", "Agro", "Search")</li>
 						<li>@Html.ActionLink("Одежда и обувь", "Clothes", "Search")</li>
 						<li>@Html.ActionLink("О нас", "About", "Home")</li>
+
+						@{
+							if (User.Identity.IsAuthenticated)
+							{
+								<li>@Html.ActionLink("Выход", "SignOut", "User")</li>
+							}
+							else
+							{
+								<li class="sign-container">@Html.ActionLink("Вход", "SignIn", "User")</li>
+							}
+						}
+						<li class="sign-container">@Html.ActionLink("Регистрация", "SignUp", "User")</li>
 					</ul>
+					<script>
+						(function() {
+							var path = location.pathname.toLowerCase();
+							var search = (path.startsWith("/signup") || path.startsWith("/signin"))
+								? location.search
+								: "returnUrl=" + encodeURIComponent(location.pathname + location.search);
+
+							var signs = $(".sign-container").children("a");
+							for (var i = 0; i < signs.length; i++) {
+								signs.get(i).search = search;
+							}
+						})();
+					</script>
 					<br style="clear: left" />
 				</div> <!-- end of ddsmoothmenu -->
 			</div> <!-- END of templatemo_menubar -->

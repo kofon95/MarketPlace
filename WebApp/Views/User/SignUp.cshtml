@@ -1,0 +1,44 @@
+﻿@model WebApp.Core.ViewModel.UserViewModel.SignUp
+@{
+	ViewBag.Title = "Регистрация";
+}
+
+<h2>Регистрация</h2>
+
+@using (Html.BeginForm())
+{
+	@*@Html.AntiForgeryToken()*@
+	@Html.ValidationSummary(true, "Ошибка:", new { @class = "text-danger" })
+	<div>
+		<div>
+			Е-майл
+			@Html.TextBoxFor(u => u.Login, new {title = "user@example.com"})
+			@Html.ValidationMessageFor(u => u.Login)
+		</div>
+		<div>
+			Пароль
+			@Html.PasswordFor(u => u.Password)
+			@Html.ValidationMessageFor(u => u.Password)
+		</div>
+		<div>
+			Имя
+			@Html.TextBoxFor(u => u.GivenName, new { title = "Иван" })
+			@Html.ValidationMessageFor(u => u.GivenName)
+		</div>
+		<div>
+			Фамилия
+			@Html.TextBoxFor(u => u.Surname, new { title = "Иванов" })
+			@Html.ValidationMessageFor(u => u.Surname)
+		</div>
+		<div>
+			<input type="submit" value="Регистрация" />
+		</div>
+	</div>
+}
+
+@Html.Partial("GoToReturnUrl")
+
+@section Scripts{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+}

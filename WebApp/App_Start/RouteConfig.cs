@@ -38,6 +38,26 @@ namespace WebApp
                 defaults: new { controller = "Home", action = "About" }
             );
 
+            #region User
+
+            routes.MapRoute(
+                name: "SignIn",
+                url: "SignIn",
+                defaults: new { controller = "User", action = "SignIn" }
+            );
+            routes.MapRoute(
+                name: "SignUp",
+                url: "SignUp",
+                defaults: new { controller = "User", action = "SignUp" }
+            );
+            routes.MapRoute(
+                name: "SignOut",
+                url: "SignOut",
+                defaults: new { controller = "User", action = "SignOut" }
+            );
+
+            #endregion
+
             routes.MapRoute(
                 name: "Searchs",
                 url: "{action}",

@@ -119,6 +119,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\SqlRepository.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="EntityModel.Context.tt">

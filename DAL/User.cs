@@ -12,23 +12,26 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Guest
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Guest()
+        public User()
         {
-            this.ProductViews = new HashSet<ProductView>();
+            this.Guests = new HashSet<Guest>();
         }
     
         public int id { get; set; }
-        public string ip_address { get; set; }
-        public string user_agent { get; set; }
-        public string languages { get; set; }
-        public System.DateTime coming_date { get; set; }
-        public Nullable<int> user_id { get; set; }
+        public string login { get; set; }
+        public string password { get; set; }
+        public string roles { get; set; }
+        public string given_name { get; set; }
+        public string surname { get; set; }
+        public Nullable<System.DateTime> birthday { get; set; }
+        public string phone { get; set; }
+        public string photo_src { get; set; }
+        public string social_networks { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductView> ProductViews { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<Guest> Guests { get; set; }
     }
 }

@@ -1,11 +1,15 @@
 ﻿using System;
+using System.IO;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using DAL;
 using WebApp.Core;
 
+//[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.config", Watch = true)]
 namespace WebApp
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -18,6 +22,21 @@ namespace WebApp
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebAPI.WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
+            Log.I("Application started");
+        }
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+            var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+
+                string[] roles = ticket.UserData.Split(',');
+                Context.User = new GenericPrincipal(new GenericIdentity(ticket.Name), roles);
+            }
         }
 
         protected void Application_AcquireRequestState()

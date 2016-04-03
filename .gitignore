@@ -17,3 +17,5 @@ TestResult.xml
 
 *.tmp
 *.tmp_proj
+
+*/Core/Private

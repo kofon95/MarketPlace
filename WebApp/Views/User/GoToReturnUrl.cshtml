@@ -1,0 +1,8 @@
+﻿@{
+	var returnUrl = Request.Params["returnUrl"];
+	if (!string.IsNullOrWhiteSpace(returnUrl))
+	{
+		<hr/>
+		<div><a href="@returnUrl">Вернуться</a></div>
+	}
+}

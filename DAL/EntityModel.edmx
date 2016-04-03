@@ -77,6 +77,21 @@
           <Property Name="guest_id" Type="int" Nullable="false" />
           <Property Name="view_date" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="64" />
+          <Property Name="roles" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="given_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="photo_src" Type="nvarchar" MaxLength="500" />
+          <Property Name="social_networks" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK__AgroCommo__agro___1AD3FDA4">
           <End Role="AgroCategories" Type="Self.AgroCategories" Multiplicity="1" />
           <End Role="AgroCommodities" Type="Self.AgroCommodities" Multiplicity="*" />
@@ -110,6 +125,18 @@
             </Principal>
             <Dependent Role="AgroProducts">
               <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Guests__user_id__2CBDA3B5">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Guests" Type="Self.Guests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Guests">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -180,7 +207,7 @@
                 <Property Name="commodity_name" Type="nvarchar" MaxLength="50" Nullable="false" />
                 <Property Name="category_id" Type="int" Nullable="false" />
                 <Property Name="category_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-                <Property Name="image_path" Type="nvarchar" MaxLength="256" Nullable="false" />
+                <Property Name="image_path" Type="nvarchar" MaxLength="256" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -217,6 +244,7 @@
           <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductViews" EntityType="Self.ProductViews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__AgroCommo__agro___1AD3FDA4" Association="Self.FK__AgroCommo__agro___1AD3FDA4">
             <End Role="AgroCategories" EntitySet="AgroCategories" />
             <End Role="AgroCommodities" EntitySet="AgroCommodities" />
@@ -228,6 +256,10 @@
           <AssociationSet Name="FK__AgroProdu__produ__37703C52" Association="Self.FK__AgroProdu__produ__37703C52">
             <End Role="Products" EntitySet="Products" />
             <End Role="AgroProducts" EntitySet="AgroProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Guests__user_id__2CBDA3B5" Association="Self.FK__Guests__user_id__2CBDA3B5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Guests" EntitySet="Guests" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductIm__produ__625A9A57" Association="Self.FK__ProductIm__produ__625A9A57">
             <End Role="Products" EntitySet="Products" />
@@ -428,6 +460,11 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductView" EntitySet="ProductViews" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="StoreModel.User" />
+          <AssociationSet Name="FK__Guests__user_id__2CBDA3B5" Association="StoreModel.FK__Guests__user_id__2CBDA3B5">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Guest" EntitySet="Guests" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProductImage">
           <Key>
@@ -461,6 +498,7 @@
           <Property Name="coming_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="user_id" Type="Int32" />
           <NavigationProperty Name="ProductViews" Relationship="StoreModel.FK__ProductVi__guest__7A3223E8" FromRole="Guest" ToRole="ProductView" />
+          <NavigationProperty Name="User" Relationship="StoreModel.FK__Guests__user_id__2CBDA3B5" FromRole="Guest" ToRole="User" />
         </EntityType>
         <EntityType Name="ProductView">
           <Key>
@@ -494,6 +532,34 @@
             </Principal>
             <Dependent Role="ProductView">
               <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="roles" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="given_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="photo_src" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="social_networks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Guests" Relationship="StoreModel.FK__Guests__user_id__2CBDA3B5" FromRole="User" ToRole="Guest" />
+        </EntityType>
+        <Association Name="FK__Guests__user_id__2CBDA3B5">
+          <End Type="StoreModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="StoreModel.Guest" Role="Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -620,6 +686,22 @@
                 <ScalarProperty Name="view_date" ColumnName="view_date" />
                 <ScalarProperty Name="guest_id" ColumnName="guest_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StoreModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="social_networks" ColumnName="social_networks" />
+                <ScalarProperty Name="photo_src" ColumnName="photo_src" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="given_name" ColumnName="given_name" />
+                <ScalarProperty Name="roles" ColumnName="roles" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,0 +1,36 @@
+﻿@model WebApp.Core.ViewModel.UserViewModel.SignIn
+
+@{
+	ViewBag.Title = "Вход";
+}
+
+<h2>Вход</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true, "Ошибка:", new { @class = "text-danger" })
+
+	<div>
+		<div>
+			Е-майл
+			@Html.TextBoxFor(s => s.Login)
+			@Html.ValidationMessageFor(s => s.Login)
+		</div>
+		<div>
+			Пароль
+			@Html.PasswordFor(s => s.Password)
+			@Html.ValidationMessageFor(s => s.Password)
+		</div>
+		<div>
+			<input type="submit" value="Войти" />
+		</div>
+	</div>
+}
+
+@Html.Partial("GoToReturnUrl")
+
+@section Scripts{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+}
